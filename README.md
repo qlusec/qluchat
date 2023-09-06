@@ -11,7 +11,7 @@ ________________________________________________________________________
 - **[Configuration](#configuration)**
 - **[Usage](#usage)**
 - **[License](#license)**
-- **[Acknowledgements](#acknowledgements)
+- **[Acknowledgements](#acknowledgements)**
 - **[Contributions](#contributions)**
 ________________________________________________________________________
 ## Overview
