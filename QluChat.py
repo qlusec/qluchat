@@ -61,10 +61,8 @@ class QluChat:
             formatted_virustotal_data = json.dumps(self.virustotal_data, indent=2)
 
             user_message = f"VirusTotal data:\n{self.formatted_virustotal_data}\n\n"
-            user_message += "ChatGPT, please help me analyze this data and give me a summary. If there is not enough data, say that you currently don't have enough, please try again later"
-
-            # Set your OpenAI API key
-            openai.api_key = "/home/qlu/Downloads/openai_api_key.txt"   
+            user_message += "ChatGPT, analyze this data and give me easily digestible summary. If theres no data say that you don't have enough and try later"
+ 
             # Define the OpenAI API endpoint
             url = "https://api.openai.com/v1/chat/completions"  
             data = {
