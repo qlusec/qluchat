@@ -61,7 +61,7 @@ This project is licensed under the MIT License
 ___
 ## Acknowledgements
 
-QluChat was developed by **Javon Strachan** as a personal project.
+QluChat was developed by Qlu Security.
 ___________
 ## Contributions
 
