@@ -10,20 +10,20 @@ class QluChat:
         self.userinput = self.get_valid_domain()
         self.ai_api = os.environ.get('AI_API')
         self.vt_api = os.environ.get('VT_API')
-    
+
+
    def get_valid_domain(self):
         while True:
             user_input = input("Insert the domain you would like analyzed (format: example.com):\n")
-            # Use a regular expression to check if the input matches the expected format
+            # Use a regular expression to validate user input
             if re.match(r'^[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$', user_input):
                 return user_input
             else:
                 print("Invalid domain format. Please enter a valid domain.")
     
 
-   def ThreatIntel(self):
+   def DomThreatIntel(self):
         
-
         url = "https://www.virustotal.com/api/v3/domains/" + self.userinput
 
         headers = {
@@ -57,12 +57,13 @@ class QluChat:
 
     
    def ChatBot(self):
-
+            
             formatted_virustotal_data = json.dumps(self.virustotal_data, indent=2)
 
             user_message = f"VirusTotal data:\n{self.formatted_virustotal_data}\n\n"
             user_message += "ChatGPT, analyze this data and give me easily digestible summary. If theres no data say that you don't have enough and try later"
- 
+
+               
             # Define the OpenAI API endpoint
             url = "https://api.openai.com/v1/chat/completions"  
             data = {
@@ -81,22 +82,26 @@ class QluChat:
             response_json = response.json()
             
             if 'choices' in response_json:
-                generated_text = response_json['choices'][0]['message']['content']
-                print(generated_text)  # Print only the generated text
+                self.generated_text = response_json['choices'][0]['message']['content']
+                print(self.generated_text)  # Print only the generated text
             else:
                 print("Response does not contain 'choices'")
-
-
     
 
 
+
 def main():
-    # Create instance of QluChat class that will ask for user input of a domain to be passed to ThreatIntel function
-    qluchat_instance = QluChat()
-    # Run Threat Intel function on the domain provided gathering domain reputation data from VT API and pass it to ChatBot function
-    qluchat_instance.ThreatIntel()
-    # Ingest VT API threat intel data into the ChatBot for analysis to provide user
-    qluchat_instance.ChatBot()
+     while True:
+             menu_choice = input("Press the number corresponding with your choice\n1) Analyze a domain\n2) Exit\n")
+             if menu_choice == "1":
+                  qluchat = QluChat()
+                  qluchat.DomThreatIntel()
+                  qluchat.ChatBot()
+             elif menu_choice == "2":
+                  print("Thank you for using QluChat!")
+                  break
+             else:
+                  print("Invalid input, try again!")
     
 
 
