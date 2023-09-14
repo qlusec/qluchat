@@ -1,5 +1,4 @@
 import os
-import openai
 import requests
 import json
 import re
